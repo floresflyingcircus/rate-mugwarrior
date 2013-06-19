@@ -1,0 +1,20 @@
+%p Wondering who those two faces are to the left? That’s Brian and David, the guys behind Beer Ranking. But they’re actualluy the guys behind MugWarrior.com. 
+
+%p What is Mug Warrior? It’s where you organize beer swaps with your friends and colleagues to try new brews. It’s also a place to rank beers that you have tried, discover new beers, and share your knowledge with your friends. 
+
+%p But Mug Warrior isn’t quite ready yet. In order to launch, we want to make sure the broadest selection of brews is available. 
+
+%p That’s where YOU come in. By providing your email address below, you can submit and rank beers for Mug Warrior. As a special thanks, you will be notified when Mug Warrior goes into Beta and you’ll receive a an early invite. The more rankings and submissions, the more faster you move up in our queue, as a thank you. 
+
+= form_for @user do |f|
+  - if @user.errors.any?
+    .error_messages
+      %h2 Form is invalid
+      %ul
+        - for message in @user.errors.full_messages
+          %li= message
+  %p
+    = f.label :email
+    %br/
+    = f.text_field :email
+  %p.button= f.submit "Start Ranking"
