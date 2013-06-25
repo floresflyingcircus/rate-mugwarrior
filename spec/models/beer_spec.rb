@@ -38,7 +38,7 @@ describe Beer do
       end
     end
 
-    describe "state" do
+    describe "brewer" do
       it { should allow_mass_assignment_of(:brewer_id)}
       it { should allow_value(@brewer.id).for(:brewer_id) }
       it { should validate_presence_of(:brewer_id) }
