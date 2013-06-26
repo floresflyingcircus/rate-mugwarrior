@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RateMugwarrior</title>
+  <title>Rate Mugwarrior</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <h1>Beer Ranking</h1>
+<ul>
+  <li>Feed</li>
+  <li>Share</li>
+  <li>Rank</li>
+</ul>
+<p id="notice"><%= notice %></p>
+
 <%= yield %>
 
 </body>

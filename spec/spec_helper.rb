@@ -52,6 +52,7 @@ Spork.prefork do
     
     config.include ShowMeTheCookies, :type => :request
     config.include FactoryGirl::Syntax::Methods
+    config.include AuthMacros
   end
 
 end

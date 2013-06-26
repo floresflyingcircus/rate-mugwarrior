@@ -1,0 +1,7 @@
+.beers
+  - @beers.each do |beer|
+    - present beer do |beer_presenter|
+      = beer_presenter.name
+      = beer_presenter.brewer_name
+      = beer_presenter.submitted
+      = beer_presenter.rating

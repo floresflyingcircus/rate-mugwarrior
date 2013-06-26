@@ -9,6 +9,7 @@ feature "signup :" do
       fill_in "Email", with: "example@example.com"
       click_button "Start Ranking"
       expect(User.all.count).to eq 1
+      expect(page).to have_content "Ready"
     end
   end
   context "As an existing user" do
@@ -20,6 +21,17 @@ feature "signup :" do
       fill_in "Email", with: "example@example.com"
       click_button "Start Ranking"
       expect(User.all.count).to eq 1
+      expect(page).to have_content "Ready"
+    end
+  end
+  context "With a bad email" do
+    scenario "Entering it throws an error" do
+      expect(User.all.count).to eq 0
+      visit about_path
+      fill_in "Email", with: "example@example"
+      click_button "Start Ranking"
+      expect(User.all.count).to eq 0
+      expect(page).to have_content "problem"
     end
   end
 end
