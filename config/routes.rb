@@ -2,7 +2,7 @@ RateMugwarrior::Application.routes.draw do
   get "beers/index"
 
   resources :ratings
-  resources :beers, only: [:index]
+  resources :beers, only: [:index, :new, :create]
 
 
   resources :users, only: [:create] do

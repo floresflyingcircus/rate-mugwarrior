@@ -30,6 +30,9 @@ feature "feed :" do
       pending "Has not yet been implemented"
     end
 
+    scenario "I can see a picture of the beers" do
+      pending "Has not yet been implemented"
+    end
   end
 
 end
