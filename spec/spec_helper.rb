@@ -52,7 +52,7 @@ Spork.prefork do
     
     config.include ShowMeTheCookies, :type => :request
     config.include FactoryGirl::Syntax::Methods
-    config.before(:each) { reset_email }
+
   end
 
 end

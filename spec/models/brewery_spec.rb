@@ -1,22 +1,23 @@
 require 'spec_helper'
 
-describe Brewer do
+describe Brewery do
   before {
     subject.name = "Yards Brewing"
   }
 
   describe "factory" do
     it "is valid" do
-      create(:brewer)
+      create(:brewery)
     end
     it "is able to generate multiple items" do
       2.times do
-        create(:brewer)  
+        create(:brewery)  
       end
     end
   end
 
   describe "scopes" do
+
   end
 
   describe "validation" do
@@ -25,8 +26,9 @@ describe Brewer do
     end
     describe "name" do
       it { should allow_mass_assignment_of(:name)}
-      it { should allow_value("United States").for(:name) }
+      it { should allow_value("Coors Brewing").for(:name) }
       it { should validate_presence_of(:name) }
+      it { should validate_uniqueness_of(:name) }
       describe "if missing" do
         before {subject.name = nil}
         it "raises an error" do
@@ -38,10 +40,9 @@ describe Brewer do
   end
 
   describe "associations" do
-    it { should have_many(:beers) }
+    # it { should have_many(:beers) }
   end
 
   describe "methods" do
   end
-
 end
