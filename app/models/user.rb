@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many    :ratings
+  has_many    :beers,
+                through: :ratings
   validates   :email,         
                 presence:       true,
                 uniqueness:     {case_sensitive: true},

@@ -4,6 +4,7 @@ gem 'rails', '3.2.13'
 
 gem 'haml-rails'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'sqlite3'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'strong_parameters', :github => "rails/strong_parameters", :branch => "master"
@@ -11,6 +12,7 @@ gem 'strong_parameters', :github => "rails/strong_parameters", :branch => "maste
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails'
   gem 'uglifier', '>= 1.0.3'
 end
 

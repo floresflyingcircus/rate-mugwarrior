@@ -1,15 +1,21 @@
 class UsersController < ApplicationController
   def create
-    @user = User.new(user_params)
-    if @user.save
-      cookies[:auth_token] = @user.auth_token
-      redirect_to root_url, :notice => "Signed up and logged in!"
+    if @user = User.find_by_email(user_params[:email])
+
+        cookies[:auth_token] = @user.id
+        redirect_to beers_path, :notice => "Ready to go!"
     else
-      render "new"
+      @user = User.new(user_params)
+      if @user.save
+        cookies[:auth_token] = @user.id
+        redirect_to beers_path, :notice => "Ready to go!"
+      else
+        redirect_to about_path, :notice => "There was a problem, please try again!"
+      end
     end
   end
 private
   def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation, :email)
+    params.require(:user).permit(:email)
   end
 end
