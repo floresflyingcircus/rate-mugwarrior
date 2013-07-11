@@ -13,6 +13,15 @@
 
 ActiveRecord::Schema.define(:version => 20130710230830) do
 
+  create_table "beers", :force => true do |t|
+    t.string   "name"
+    t.integer  "brewery_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "beers", ["brewery_id"], :name => "index_beers_on_brewery_id"
+
   create_table "breweries", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false

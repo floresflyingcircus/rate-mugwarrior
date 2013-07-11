@@ -11,8 +11,8 @@
     = f.text_field :name
 
   .field
-    = f.label :brewer_name, "Brewery Name"
-    = f.text_field :brewer_name, data: {autocomplete_source: Brewer.order(:name).map(&:name)}
+    = f.label :brewery_name, "Brewery Name"
+    = f.text_field :brewery_name, data: {autocomplete_source: Brewery.order(:name).map(&:name)}
 
   .actions
     = f.submit 'Save'

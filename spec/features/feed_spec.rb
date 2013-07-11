@@ -16,8 +16,8 @@ feature "feed :" do
 
     scenario "I can see the brewers of the beers" do
       visit beers_path
-      expect(page).to have_content @beer1.brewer_name
-      expect(page).to have_content @beer2.brewer_name
+      expect(page).to have_content @beer1.brewery_name
+      expect(page).to have_content @beer2.brewery_name
     end
 
     scenario "I can see the date the beers were submitted" do

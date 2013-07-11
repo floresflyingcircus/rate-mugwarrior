@@ -26,6 +26,6 @@ private
   # params.require(:person).permit(:name, :age)
   # Also, you can specialize this method with per-user checking of permissible attributes.
   def beer_params
-    params.require(:beer).permit(:name, :brewer_name)
+    params.require(:beer).permit(:name, :brewery_name)
   end
 end

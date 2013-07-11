@@ -16,24 +16,24 @@ feature "feed :" do
     end
 
     scenario "I can share a new beer from an existing brewery" do
-      expect(Brewer.all.size).to eq 0
+      expect(Brewery.all.size).to eq 0
       visit new_beer_path
       fill_in "Beer Name", with: "Example Beer"
       fill_in "Brewery", with: "Example Brewery"
       click_button "Save"
       expect(Beer.all.size).to eq 1
-      expect(Brewer.all.size).to eq 1
+      expect(Brewery.all.size).to eq 1
     end
 
     scenario "I can share a new beer from an existing brewery" do
-      brewer = create(:brewer)
-      expect(Brewer.all.size).to eq 1
+      brewery = create(:brewery)
+      expect(Brewery.all.size).to eq 1
       visit new_beer_path
       fill_in "Beer Name", with: "Example Beer"
-      fill_in "Brewery", with: brewer.name
+      fill_in "Brewery", with: brewery.name
       click_button "Save"
       expect(Beer.all.size).to eq 1
-      expect(Brewer.all.size).to eq 1
+      expect(Brewery.all.size).to eq 1
     end
 
     scenario "I can share a new beer from an existing brewery" do

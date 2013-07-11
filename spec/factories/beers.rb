@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :beer do
     sequence(:name) { |n| "beer name#{n}" }
-    association :brewer
+    association :brewery
   end
 end
