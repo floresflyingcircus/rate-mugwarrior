@@ -8,6 +8,6 @@ class BeerPresenter < BasePresenter
   end
 
   def rating
-    "BEER RATING"
+  	content_tag("div", beer.average_rating)
   end
 end

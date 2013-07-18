@@ -2,8 +2,10 @@ RateMugwarrior::Application.routes.draw do
 
   resources :breweries
 
-  resources :ratings
-  resources :beers, only: [:index, :new, :create]
+  
+  resources :beers, only: [:index, :new, :create] do
+    resources :ratings
+  end
 
 
   resources :users, only: [:create] do

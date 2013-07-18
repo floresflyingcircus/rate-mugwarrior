@@ -6,6 +6,7 @@ describe Rating do
     @user ||= create(:user)
     subject.user_id = @user.id
     subject.beer_id = @beer.id
+    subject.rank = 5
   }
 
   describe "factory" do
@@ -38,6 +39,17 @@ describe Rating do
       it { should allow_mass_assignment_of(:beer_id)}
       it { should allow_value(@beer.id).for(:beer_id) }
       it { should validate_presence_of(:beer_id) }
+    end
+
+    describe "beer" do
+      it { should allow_mass_assignment_of(:rank)}
+      it { should allow_value(@beer.id).for(:rank) }
+      it { should validate_presence_of(:rank) }
+      it { should validate_numericality_of(:rank) }
+      it "rank is between 1 and 5" do
+        pending "Code works but spec written is looking for teh wrong error message"
+        # it { should ensure_inclusion_of(:rank).in_range(1..5) }
+      end
     end
   end
 

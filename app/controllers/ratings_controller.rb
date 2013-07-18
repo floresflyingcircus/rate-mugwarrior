@@ -1,25 +1,5 @@
 class RatingsController < ApplicationController
-  # GET /ratings
-  # GET /ratings.json
-  def index
-    @ratings = Rating.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @ratings }
-    end
-  end
-
-  # GET /ratings/1
-  # GET /ratings/1.json
-  def show
-    @rating = Rating.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @rating }
-    end
-  end
+  before_filter :set_beer
 
   # GET /ratings/new
   # GET /ratings/new.json
@@ -32,19 +12,16 @@ class RatingsController < ApplicationController
     end
   end
 
-  # GET /ratings/1/edit
-  def edit
-    @rating = Rating.find(params[:id])
-  end
 
   # POST /ratings
   # POST /ratings.json
   def create
-    @rating = Rating.new(rating_params)
+    @rating = @beer.ratings.new(rating_params)
+    @rating.user = current_user
 
     respond_to do |format|
       if @rating.save
-        format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
+        format.html { redirect_to url_for_next_beer_ranking, notice: 'Rating was successfully created.' }
         format.json { render json: @rating, status: :created, location: @rating }
       else
         format.html { render action: "new" }
@@ -53,40 +30,19 @@ class RatingsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /ratings/1
-  # PATCH/PUT /ratings/1.json
-  def update
-    @rating = Rating.find(params[:id])
 
-    respond_to do |format|
-      if @rating.update_attributes(rating_params)
-        format.html { redirect_to @rating, notice: 'Rating was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @rating.errors, status: :unprocessable_entity }
-      end
-    end
+private
+
+  def set_beer
+    @beer = Beer.find(params[:beer_id])
   end
 
-  # DELETE /ratings/1
-  # DELETE /ratings/1.json
-  def destroy
-    @rating = Rating.find(params[:id])
-    @rating.destroy
 
-    respond_to do |format|
-      format.html { redirect_to ratings_url }
-      format.json { head :no_content }
-    end
-  end
-
-  private
 
     # Use this method to whitelist the permissible parameters. Example:
     # params.require(:person).permit(:name, :age)
     # Also, you can specialize this method with per-user checking of permissible attributes.
     def rating_params
-      params.require(:rating).permit(:beer, :rank, :user)
+      params.require(:rating).permit(:rank)
     end
 end

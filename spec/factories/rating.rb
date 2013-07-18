@@ -4,5 +4,6 @@ FactoryGirl.define do
   factory :rating do
     association :user
     association :beer
+    rank 5
   end
 end
