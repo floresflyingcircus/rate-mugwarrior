@@ -38,7 +38,7 @@ describe Beer do
       end
     end
 
-    describe "state" do
+    describe "brewery" do
       it { should allow_mass_assignment_of(:brewery_id)}
       it { should allow_value(@brewery.id).for(:brewery_id) }
       it { should validate_presence_of(:brewery_id) }
@@ -47,9 +47,105 @@ describe Beer do
 
   describe "associations" do
     it { should belong_to(:brewery) }
+    it { should have_many(:ratings) }
+    it { should have_many(:users).through(:ratings) }
   end
 
   describe "methods" do
+    describe "self.not_rated_yet_by(user)" do
+      it "should return Beers which have not yet been rated" do
+        user = create(:user)
+        beer1 = create(:beer)
+        beer2 = create(:beer)
+        beers = Beer.not_rated_yet_by(user)
+        beers.should =~ [beer1, beer2]
+      end
+      it "should not return Beers which have been rated" do
+        user = create(:user)
+        beer1 = create(:beer)
+        beer2 = create(:beer)
+        rating = create(:rating, user: user, beer: beer1)
+        beers = Beer.not_rated_yet_by(user)
+        beers.should =~ [beer2]
+      end
+    end
+    describe "self.find_random_unranked_beer_for(user)" do
+      it "should return an unranked beer" do
+        pending "Need to figure out how to mock Kernel.rand in a model"
+        user = create(:user)
+        beer1 = create(:beer)
+        beer2 = create(:beer)
+        beers = Beer.find_random_unranked_beer_for(user)
+        beers.should == [beer1] || [beer2]
+      end
+      it "should return an unranked beer" do
+        pending "Need to figure out how to mock Kernel.rand in a model"
+        user = create(:user)
+        beer1 = create(:beer)
+        beer2 = create(:beer)
+        rating = create(:rating, user: user, beer: beer1)
+        beers = Beer.find_random_unranked_beer_for(user)
+        beers.should =~ [beer2]
+      end
+    end
+    describe "brewery_name" do
+      it "should return the brewery name" do
+        expect(subject.brewery_name).to eq @brewery.name
+      end
+    end
 
+    describe "brewery_name=(name)" do
+      it "should set brewery to the  brewery with that name if it exists" do
+        brewery2 = create(:brewery)
+        subject.brewery_name = brewery2.name
+        expect(subject.brewery).to eq brewery2
+      end
+      it "should create a new brewery if no brewery with the name exists" do
+        old_count = Brewery.count
+        subject.brewery_name=("New Brewery Name")
+        expect(Brewery.count).to eq old_count + 1
+        
+        expect(subject.brewery).to eq Brewery.last
+      end
+      it "should not change the brewery if no name given" do
+        subject.brewery_name=("")
+        expect(subject.brewery).to eq @brewery
+      end
+    end
+    describe "average rating" do
+      it "should return the average of the ratings for a beer" do
+        beer = create(:beer)
+        create(:rating, beer: beer, rank: 2)
+        create(:rating, beer: beer, rank: 4)
+        expect(beer.average_rating).to eq 3
+      end
+      it "should safely return 0 if there are no ratings" do
+        beer = create(:beer)
+        expect(beer.average_rating).to eq 0
+      end
+    end
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

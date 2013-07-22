@@ -33,7 +33,6 @@ class Beer < ActiveRecord::Base
     self.brewery = Brewery.find_or_create_by_name(name) if name.present?
   end
   def average_rating
-    6
     self.ratings.average(:rank).to_i
   end
 

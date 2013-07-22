@@ -41,15 +41,19 @@ describe Rating do
       it { should validate_presence_of(:beer_id) }
     end
 
-    describe "beer" do
+    describe "rank" do
       it { should allow_mass_assignment_of(:rank)}
-      it { should allow_value(@beer.id).for(:rank) }
       it { should validate_presence_of(:rank) }
-      it { should validate_numericality_of(:rank) }
-      it "rank is between 1 and 5" do
-        pending "Code works but spec written is looking for teh wrong error message"
-        # it { should ensure_inclusion_of(:rank).in_range(1..5) }
-      end
+      it { should validate_numericality_of(:rank).only_integer }
+
+      #Replace these with the ones commented below when shoulda-matchers catches up
+      it { should_not allow_value(0).for(:rank) }
+      it { should allow_value(1).for(:rank) }
+      it { should allow_value(5).for(:rank) }
+      it { should_not allow_value(6).for(:rank) }
+      # Shoulda matchers does not include these yet - but it should...
+      # it { should validate_numericality_of(:rank).greater_than_or_equal_to(1) }
+      # it { should validate_numericality_of(:rank).less_than_or_equal_to(5) }
     end
   end
 

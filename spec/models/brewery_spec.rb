@@ -40,7 +40,7 @@ describe Brewery do
   end
 
   describe "associations" do
-    # it { should have_many(:beers) }
+    it { should have_many(:beers) }
   end
 
   describe "methods" do

@@ -24,6 +24,7 @@ feature "View Beers Spec :" do
 
   end
   context "Given a user who has not added beers" do
+    before { sign_in }
     context "and there are beers in the system" do
       scenario "I should be able to give ranks to previously entered beers from other users" do
         pending "Not yet implemented"
