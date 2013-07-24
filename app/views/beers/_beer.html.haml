@@ -1,0 +1,14 @@
+- present beer do |beer_presenter|
+  %dl.beer
+    %dt
+      %span Beer:
+      = beer_presenter.name
+    %dd.brewery
+      %span Brewery:
+      = beer_presenter.brewery_name
+    %dd.submitted
+      %span Submitted:
+      = beer_presenter.submitted
+    %dd.rating
+      %span Rank: 
+      = beer_presenter.rating

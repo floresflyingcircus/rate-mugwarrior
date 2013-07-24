@@ -1,5 +1,6 @@
 class RatingsController < ApplicationController
   before_filter :set_beer
+  include BeersHelper
 
   # GET /ratings/new
   # GET /ratings/new.json
