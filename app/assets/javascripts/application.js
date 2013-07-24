@@ -13,4 +13,18 @@
 //= require jquery
 //= require jquery.ui.autocomplete
 //= require jquery_ujs
+//= require jquery.raty
 //= require_tree .
+
+$(function(){
+
+  $('[data-rating]').raty({
+    score: function() {
+      return $(this).data('rating');
+    },
+    click: function(score, evt) {
+      $(this).next('[name="rating[rank]"]').val(score)
+    }
+  });
+  
+});

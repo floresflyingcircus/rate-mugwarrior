@@ -8,7 +8,7 @@
 
   .field
     = f.label :rank
-    #star
-    = f.number_field :rank
+    %div{ data: {rating: @rating.rank.present? ? @rating.rank : 0 }}
+    = f.hidden_field :rank
   .actions
     = f.submit 'Save'
