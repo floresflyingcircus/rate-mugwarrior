@@ -1,1 +1,18 @@
 index.html.haml
+
+.beers
+  - @beers.each do |beer|
+    - present beer do |beer_presenter|
+      %dl.beer
+        %dt
+          %span Beer:
+          = beer_presenter.name
+        %dd.brewery
+          %span Brewery:
+          = beer_presenter.brewery_name
+        %dd.rating
+          %span Rank It!
+          = beer_presenter.rating
+        %dd.submitted
+          %span Submitted
+          = beer_presenter.submitted
