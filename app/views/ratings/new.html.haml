@@ -1,5 +1,16 @@
-%h1 New rating
+= render @beer
 
-= render 'form'
+= form_for [@beer, @rating] do |f|
+  - if @rating.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@rating.errors.count, "error")} prohibited this rating from being saved:"
+      %ul
+        - @rating.errors.full_messages.each do |msg|
+          %li= msg
 
-/ = link_to 'Back', ratings_path
+  .field
+    = f.label :rank, "Rank it!"
+    %div{ data: {rating: @rating.rank.present? ? @rating.rank : 0 }}
+    = f.hidden_field :rank
+  .actions
+    = f.submit 'Save'
