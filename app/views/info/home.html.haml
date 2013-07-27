@@ -1,5 +1,11 @@
-%h2{class: "ranking logo"} Beer Ranking
-%p 
-  From the team that is bringing you 
-  %span{class: "mugwarrior logo"} Mugwarrior
-%p= link_to "Lets Get Started", about_path
+- content_for(:body_id_attribute) { "homepage" }
+
+.hero-image= image_tag("/assets/mascot.png", alt: "The Mugwarrior Mascot")
+
+.hero-content
+  %h2 Beer Ranking
+  %p 
+    From the team that is bringing you 
+    %span{class: "mugwarrior-logo"} Mugwarrior
+
+.big-link= link_to "Lets Get Started", about_path

@@ -6,8 +6,10 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-<h1>Beer Ranking</h1>
+<body id="<%= yield(:body_id_attribute) %>">
+  <header>
+    <h1>Beer Ranking</h1>
+  </header>
 <%- if (request.url != root_url) && (request.url != about_url) %>
 	<ul>
 	  <li><%= link_to "Feed", beers_path() %></li>

@@ -1,0 +1,51 @@
+#homepage header h1 {
+  display:none;
+}
+
+.hero-image {
+  width:50em;
+  position:absolute;
+  z-index:10;
+  margin-left:10px;
+  display:inline-block;
+  margin-top:-13px;
+}
+
+.hero-image img {
+  width:15.4em;
+  height:18.7em;
+}
+
+.hero-content {
+  margin-left: 16em;
+  margin-top:15em;
+  h2 {
+    font-size:1.8em;
+    margin-bottom:10.6em;
+  }
+  p {
+  	margin-left:-25px;
+  	font-family: serif;
+  }
+}
+.mugwarrior-logo {
+	display:block;
+	background: url(/assets/logo.png) no-repeat top left;
+	width: 173px;
+	height:37px;
+	overflow:hidden;
+	text-indent: -3000em;
+	
+
+}
+.big-link a {
+	position:absolute;
+	top:0px;
+	height:100%;
+	width:100%;
+	display:block;
+	text-indent: -3000em;
+	:hover {
+		background:none;
+	}
+}
