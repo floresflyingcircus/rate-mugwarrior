@@ -6,9 +6,12 @@ class Beer < ActiveRecord::Base
   belongs_to    :brewery
 
   validates     :name,
-                  presence: true
+                  presence: true,
+                  uniqueness: true
   validates     :brewery_id,
                   presence: true
+
+
 
   # virtual attribute used instead of a delegate to support autocomplete functionality
   def self.not_rated_yet_by(user)

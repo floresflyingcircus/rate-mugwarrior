@@ -27,7 +27,10 @@ feature "feed :" do
     end
 
     scenario "I can see the rating of the beers" do
-      pending "Has not yet been implemented"
+      rating1 = create(:rating, beer: @beer1, rank: 2)
+      rating2 = create(:rating, beer: @beer1, rank: 5)
+      visit beers_path
+      pending "Spec not implemented yet"
     end
 
     scenario "I can see a picture of the beers" do

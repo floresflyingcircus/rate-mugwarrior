@@ -1,6 +1,6 @@
 = render @beer
 
-= form_for [@beer, @rating] do |f|
+= form_for @beer_form do |f|
   - if @rating.errors.any?
     #error_explanation
       %h2= "#{pluralize(@rating.errors.count, "error")} prohibited this rating from being saved:"

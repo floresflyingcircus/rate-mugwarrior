@@ -1,9 +1,9 @@
-= form_for @beer do |f|
-  - if @beer.errors.any?
+= form_for @beer_form, url: :beers do |f|
+  - if @beer_form.errors.any?
     #error_explanation
       %h2= "#{pluralize(@beer.errors.count, "error")} prohibited this beer from being saved:"
       %ul
-        - @beer.errors.full_messages.each do |msg|
+        - @beer_form.errors.full_messages.each do |msg|
           %li= msg
 
   .field
@@ -13,6 +13,11 @@
   .field
     = f.label :brewery_name, "Brewery Name"
     = f.text_field :brewery_name, data: {autocomplete_source: Brewery.order(:name).map(&:name)}
+  
+  .field
+    = f.label :rank, "Rank it!"
+    %div{ data: {rating: 0 }}
+    = f.hidden_field :rank
 
   .actions
     = f.submit 'Save'

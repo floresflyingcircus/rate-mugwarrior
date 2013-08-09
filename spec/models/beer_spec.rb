@@ -30,6 +30,7 @@ describe Beer do
       it { should allow_mass_assignment_of(:name)}
       it { should allow_value("United States").for(:name) }
       it { should validate_presence_of(:name) }
+      it { should validate_uniqueness_of(:name) }
       describe "if missing" do
         before {subject.name = nil}
         it "raises an error" do
