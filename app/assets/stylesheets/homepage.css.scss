@@ -14,18 +14,22 @@
 .hero-image img {
   width:15.4em;
   height:18.7em;
+  margin-top: -2em;
 }
 
 .hero-content {
   margin-left: 16em;
   margin-top:15em;
+	
   h2 {
     font-size:1.8em;
     margin-bottom:10.6em;
+	color: #2d56a6;
   }
   p {
   	margin-left:-25px;
   	font-family: serif;
+	color: #2d56a6;
   }
 }
 .mugwarrior-logo {
@@ -46,4 +50,5 @@
 	display:block;
 	text-indent: -3000em;
   z-index:100;
+
 }
