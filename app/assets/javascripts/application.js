@@ -23,7 +23,7 @@ $(function(){
       return $(this).data('rating');
     },
     click: function(score, evt) {
-      $(this).next('[name="rating[rank]"]').val(score)
+      $(this).next('[name="beer[ratings_attributes][0][rank]"]').val(score)
     }
   });
   

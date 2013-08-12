@@ -1,10 +1,14 @@
-= form_for @beer_form, url: :beers do |f|
-  - if @beer_form.errors.any?
+= form_for @beer, url: :beers, :html => { :multipart => true } do |f|
+  - if @beer.errors.any?
     #error_explanation
       %h2= "#{pluralize(@beer.errors.count, "error")} prohibited this beer from being saved:"
       %ul
-        - @beer_form.errors.full_messages.each do |msg|
+        - @beer.errors.full_messages.each do |msg|
           %li= msg
+
+  .field
+    = f.label :avatar, "Upload Picture"
+    = f.file_field :avatar
 
   .field
     = f.label :name, "Beer Name"
@@ -13,11 +17,11 @@
   .field
     = f.label :brewery_name, "Brewery Name"
     = f.text_field :brewery_name, data: {autocomplete_source: Brewery.order(:name).map(&:name)}
-  
-  .field
-    = f.label :rank, "Rank it!"
-    %div{ data: {rating: 0 }}
-    = f.hidden_field :rank
+  = f.fields_for :ratings do |builder|
+    .field
+      = builder.label :rank, "Rank it!"
+      %div{ data: {rating: 0 }}
+      = builder.hidden_field :rank
 
   .actions
     = f.submit 'Save'

@@ -10,4 +10,8 @@ class BeerPresenter < BasePresenter
   def rating
   	content_tag("div", beer.average_rating)
   end
+
+  def avatar
+	image_tag beer.avatar.url(:medium)
+  end
 end
