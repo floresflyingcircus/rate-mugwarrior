@@ -1,9 +1,14 @@
 class Beer < ActiveRecord::Base
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+
   has_many      :ratings
   has_many      :users,
                   through: :ratings
 
   belongs_to    :brewery
+
+  # accepts_nested_attributes_for :ratings, 
+  #                                 allow_destroy: true
 
   validates     :name,
                   presence: true,
@@ -35,6 +40,7 @@ class Beer < ActiveRecord::Base
   def brewery_name=(name)
     self.brewery = Brewery.find_or_create_by_name(name) if name.present?
   end
+
   def average_rating
     self.ratings.average(:rank).to_i
   end

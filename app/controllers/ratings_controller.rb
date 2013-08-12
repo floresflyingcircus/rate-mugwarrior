@@ -17,8 +17,8 @@ class RatingsController < ApplicationController
   # POST /ratings
   # POST /ratings.json
   def create
-    @rating = @beer.ratings.new(rating_params)
-    @rating.user = current_user
+    rank = params[:score] ? params[:score] : 0
+    @rating = @beer.ratings.new(user: current_user, rank: rank)
 
     respond_to do |format|
       if @rating.save
@@ -38,12 +38,4 @@ private
     @beer = Beer.find(params[:beer_id])
   end
 
-
-
-    # Use this method to whitelist the permissible parameters. Example:
-    # params.require(:person).permit(:name, :age)
-    # Also, you can specialize this method with per-user checking of permissible attributes.
-    def rating_params
-      params.require(:rating).permit(:rank)
-    end
 end

@@ -8,6 +8,7 @@ gem 'jquery-ui-rails'
 gem 'sqlite3'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'strong_parameters', :github => "rails/strong_parameters", :branch => "master"
+gem "paperclip", "~> 3.0"
 
 gem 'jquery-raty-rails'
 
